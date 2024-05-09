@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morphine Conversion Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            border-bottom: 3px solid #0056b3;
+        }
+        .container, .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            margin-top: 20px;
+            padding: 20px;
+        }
+        .btn-custom {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .alert-custom {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <h1>Morphine Conversion Calculator</h1>
+    </div>
+    <div class="container my-5">
+        <!-- Morphine Conversion Section -->
+        <form id="drugForm">
+            <div id="drugInputsContainer">
+                <div class="input-group mb-3">
+                    <select class="form-select">
+                        <option value="1.0">Drug A (1.0)</option>
+                        <option value="0.5">Drug B (0.5)</option>
+                        <option value="2.0">Drug C (2.0)</option>
+                    </select>
+                    <input type="number" class="form-control" placeholder="Amount">
+                    <button class="btn btn-danger" type="button" onclick="removeDrugInput(this)">Remove</button>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary mb-3" onclick="addDrugInput()">Add Drug</button>
+            <button type="button" class="btn btn-custom" onclick="calculateTotal()">Calculate Total Morphine</button>
+        </form>
+        <div id="totalMorphine" class="alert alert-custom mt-3" style="display: none;"></div>
+
+        <!-- Fentanyl to Morphine Conversion Section -->
+        <div class="mt-4">
+            <h2>Fentanyl to Morphine Conversion</h2>
+            <div class="input-group mb-3">
+                <input type="number" class="form-control" id="fentanylAmount" placeholder="Enter street fentanyl amount (mg)">
+                <button class="btn btn-custom" onclick="convertFentanyl()">Convert</button>
+            </div>
+            <div id="fentanylResult" class="alert alert-custom" style="display: none;"></div>
+        </div>
+
+        <!-- Drugs List Section -->
+        <div class="mt-4">
+            <h2>Drug Conversion Ratios</h2>
+            <div class="d-flex flex-wrap">
+                <div class="card m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Drug A</h5>
+                        <p class="card-text">Conversion Ratio: 1.0</p>
+                    </div>
+                </div>
+                <div class="card m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Drug B</h5>
+                        <p class="card-text">Conversion Ratio: 0.5</p>
+                    </div>
+                </div>
+                <div class="card m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Drug C</h5>
+                        <p class="card-text">Conversion Ratio: 2.0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addDrugInput() {
+            const container = document.getElementById('drugInputsContainer');
+            const inputGroup = document.querySelector('.input-group').cloneNode(true);
+            container.appendChild(inputGroup);
+        }
+
+        function removeDrugInput(button) {
+            button.closest('.input-group').remove();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            document.querySelectorAll('#drugInputsContainer .input-group').forEach(group => {
+                const select = group.querySelector('select');
+                const amountInput = group.querySelector('input[type="number"]');
+                const conversionRatio = parseFloat(select.value);
+                const amount = parseFloat(amountInput.value || 0);
+                total += amount * conversionRatio;
+            });
+            const totalMorphineDiv = document.getElementById('totalMorphine');
+            totalMorphineDiv.textContent = `Total Morphine Equivalent: ${total.toFixed(2)} mg`;
+            totalMorphineDiv.style.display = 'block';
+        }
+
+        function convertFentanyl() {
+            const fentanylAmount = document.getElementById('fentanylAmount').value;
+            const conversionRatio = 100; // Example ratio
+            const morphineEquivalent = fentanylAmount * conversionRatio;
+            document.getElementById('fentanylResult').textContent = `Morphine Equivalent: ${morphineEquivalent.toFixed(2)} mg`;
+            document.getElementById('fentanylResult').style.display = 'block';
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
