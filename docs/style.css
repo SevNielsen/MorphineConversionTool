@@ -15,6 +15,7 @@ body {
 a, button {
     color: var(--primary-color);
 }
+
 h1, h2, h3 {
     font-family: 'Helvetica', sans-serif;
 }
@@ -32,6 +33,7 @@ h2 {
 body {
     font-size: 16px;
 }
+
 .container {
     max-width: 1200px;
     margin: auto;
@@ -40,8 +42,9 @@ body {
 
 .row {
     display: flex;
-    margin: 0
+    margin: 0;
 }
+
 input, select, button {
     padding: 10px;
     margin-top: 5px;
@@ -69,6 +72,7 @@ button {
 button:active {
     transform: translateY(2px);
 }
+
 .card {
     background: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -89,6 +93,7 @@ button:active {
 input[type="number"] {
     font-size: 18px; /* Larger font for easy interaction */
 }
+
 @keyframes button-click {
     0% {
         transform: scale(1);
@@ -109,6 +114,26 @@ button:active {
     color: var(--error-color);
     font-size: 14px;
 }
+
 [aria-hidden="true"] {
     visibility: hidden;
+}
+
+/* Additional responsive font size adjustments */
+@media (max-width: 1200px) {
+    .fentanyl-input {
+        font-size: calc(14px + 0.3vw); /* Adjusts font size dynamically */
+    }
+}
+
+@media (max-width: 992px) {
+    .fentanyl-input {
+        font-size: calc(12px + 0.3vw); /* Smaller font size for tablets and small desktops */
+    }
+}
+
+@media (max-width: 768px) {
+    .fentanyl-input {
+        font-size: 16px; /* Fixed size for mobile devices to maintain readability */
+    }
 }
