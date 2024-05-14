@@ -137,3 +137,21 @@ button:active {
         font-size: 16px; /* Fixed size for mobile devices to maintain readability */
     }
 }
+footer {
+    background-color: #f8f9fa;
+    color: #333;
+    border-top: 1px solid #e7e7e7;
+}
+
+footer p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+footer a {
+    color: var(--primary-color);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
