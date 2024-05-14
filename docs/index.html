@@ -4,113 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morphine Equivalence Calculator</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Morphine Equivalence Calculator</h1>
-    <div class="highlight-area">
-        <div class="drug-container">
-            <!-- Hydromorphone Oral (hmo) -->
-            <div class="input-group">
-                <label for="hmo">Hydromorphone Oral (mg):</label>
-                <div class="inputs-inline">
-                    <input type="number" id="hmo" placeholder="Enter dosage">
-                    <div class="output-label-group">
-                        <label class="meq-label">MEQ</label>
-                        <input type="number" id="m0" placeholder="Morphine Equivalent" readonly>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Morphine Equivalence Calculator</h1>
+        <div class="card">
+            <div class="card-body">
+                <!-- Input sections organized in fixed columns -->
+                <div class="row">
+                    <div class="col-6">
+                        <!-- Drug inputs -->
+                        <div class="form-group">
+                            <label for="hmo">Hydromorphone Oral:</label>
+                            <input type="number" class="form-control" id="hmo" placeholder="Enter dosage (mg)">
+                        </div>
+                        <div class="form-group">
+                            <label for="hmiv">Hydromorphone IV:</label>
+                            <input type="number" class="form-control" id="hmiv" placeholder="Enter dosage (mg)">
+                        </div>
+                        <div class="form-group">
+                            <label for="kadian">Kadian:</label>
+                            <input type="number" class="form-control" id="kadian" placeholder="Enter dosage (mg)">
+                        </div>
+                        <div class="form-group">
+                            <label for="methadone">Methadone:</label>
+                            <input type="number" class="form-control" id="methadone" placeholder="Enter dosage (mg)">
+                        </div>
+                        <div class="form-group">
+                            <label for="fentanyl">Fentanyl:</label>
+                            <input type="number" class="form-control" id="fentanyl" placeholder="Enter dosage (mg)">
+                        </div>
+                        <div class="form-group">
+                            <label for="oxycodone">Oxycodone:</label>
+                            <input type="number" class="form-control" id="oxycodone" placeholder="Enter dosage (mg)">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <!-- Morphine equivalents outputs -->
+                        <div class="form-group">
+                            <label for="m0">MEQ:</label>
+                            <input type="number" class="form-control" id="m0" placeholder="Morphine Equivalent" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="m1">MEQ:</label>
+                            <input type="number" class="form-control" id="m1" placeholder="Morphine Equivalent" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="m2">MEQ:</label>
+                            <input type="number" class="form-control" id="m2" placeholder="Morphine Equivalent" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="m3">MEQ:</label>
+                            <input type="number" class="form-control" id="m3" placeholder="Morphine Equivalent" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="m4">MEQ:</label>
+                            <input type="number" class="form-control" id="m4" placeholder="Morphine Equivalent" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="m5">MEQ:</label>
+                            <input type="number" class="form-control" id="m5" placeholder="Morphine Equivalent" readonly>
+                        </div>
+                    </div>
+                    <!-- Total Morphine Equivalence -->
+                    <div class="col-12 mt-3">
+                        <div class="alert alert-info" role="alert">
+                            Total Morphine Equivalence in mg: <strong id="subtotal">0</strong>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Hydromorphone IV (hmiv) -->
-            <div class="input-group">
-                <label for="hmiv">Hydromorphone IV (mg):</label>
-                <div class="inputs-inline">
-                    <input type="number" id="hmiv" placeholder="Enter dosage">
-                    <div class="output-label-group">
-                        <label class="meq-label">MEQ</label>
-                        <input type="number" id="m1" placeholder="Morphine Equivalent" readonly>
+                <!-- Street Fentanyl Group -->
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Street Fentanyl Conversion</h5>
+                        <div class="row">
+                            <div class="col-md-4 col-12">
+                                <label for="SfentanylPts">Points:</label>
+                                <input type="number" class="form-control fentanyl-input" id="SfentanylPts" placeholder="Enter points">
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <label for="SfentanylPct">Percentage (%):</label>
+                                <input type="number" class="form-control fentanyl-input" id="SfentanylPct" placeholder="Enter percentage">
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <label for="m6">MEQ:</label>
+                                <input type="number" class="form-control fentanyl-input" id="m6" placeholder="Morphine Equivalent" readonly>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Kadian (kadian) -->
-            <div class="input-group">
-                <label for="kadian">Kadian (mg):</label>
-                <div class="inputs-inline">
-                    <input type="number" id="kadian" placeholder="Enter dosage">
-                    <div class="output-label-group">
-                        <label class="meq-label">MEQ</label>
-                        <input type="number" id="m2" placeholder="Morphine Equivalent" readonly>
+                <!-- Action buttons -->
+                <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <button id="resetButton" class="btn btn-secondary">Reset</button>
+                        <button id="printButton" class="btn btn-primary">Print Results</button>
                     </div>
                 </div>
-            </div>
-
-            <!-- Methadone (methadone) -->
-            <div class="input-group">
-                <label for="methadone">Methadone (mg):</label>
-                <div class="inputs-inline">
-                    <input type="number" id="methadone" placeholder="Enter dosage">
-                    <div class="output-label-group">
-                        <label class="meq-label">MEQ</label>
-                        <input type="number" id="m3" placeholder="Morphine Equivalent" readonly>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fentanyl (fentanyl) -->
-            <div class="input-group">
-                <label for="fentanyl">Fentanyl (mcg):</label>
-                <div class="inputs-inline">
-                   <input type="number" id="fentanyl" placeholder="Enter dosage">
-                   <div class="output-label-group">
-                        <label class="meq-label">MEQ</label>
-                        <input type="number" id="m4" placeholder="Morphine Equivalent" readonly>
-                    </div>
-                </div>                
-            </div>
-
-            <!-- Oxycodone (oxycodone) -->
-            <div class="input-group">
-                <label for="oxycodone">Oxycodone (mg):</label>
-                <div class="inputs-inline">
-                    <input type="number" id="oxycodone" placeholder="Enter dosage">
-                    <div class="output-label-group">
-                        <label class="meq-label">MEQ</label>
-                        <input type="number" id="m5" placeholder="Morphine Equivalent" readonly>
-                    </div>
-                </div>                
-            </div>
-            
-            <!-- Subtotal for the first six drugs -->
-            <div class="total-morphine">
-                Total Morphine Equivalence: <span id="subtotal">0</span>
             </div>
         </div>
     </div>
-    <div class="highlight-area">
-        <div class="street-fentanyl-group">
-            <div class="fentanyl-inputs">
-                <div class="fentanyl-subgroup">
-                    <label for="SfentanylPts">Street Fentanyl Points:</label>
-                    <input type="number" id="SfentanylPts" placeholder="Enter points">
-                </div>
-                <div class="fentanyl-subgroup">
-                    <label for="SfentanylPct">Percentage (%):</label>
-                    <input type="number" id="SfentanylPct" placeholder="Enter percentage">
-                </div>
-                <div class="fentanyl-output">
-                    <label class="meq-label">MEQ</label>
-                    <input type="number" id="m6" placeholder="Morphine Equivalent" readonly>
-                </div>
-            </div>
-            <button id="resetButton">Reset</button>
-            <button id="printButton">Print Results</button> 
-        </div>
-    </div>
-
-
-
     <script src="conversion.js"></script>
 </body>
 </html>
